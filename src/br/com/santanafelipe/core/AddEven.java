@@ -9,12 +9,12 @@ import br.com.santanafelipe.errors.MissingRequiredParamException;
 import br.com.santanafelipe.utils.NumberUtils;
 
 /**
- * Classe para representação da operação de adição de números ímpares.
+ * Classe para representação da operação de adição de números pares.
  * @author Felipe Santana
  * @version 0.1
  */
 public class AddEven extends Add {
-	
+
 	public AddEven() {
 		super();
 	}
@@ -28,16 +28,16 @@ public class AddEven extends Add {
 	}
 	
 	/**
-	 * Método para clonagem do objeto
-	 * @return AddEven - Clone do objeto
+	 * Método para clonagem do objeto.
+	 * @return AddOdd - Clone do objeto.
 	 */
 	@Override
 	public AddEven clone() {
 		return new AddEven(this.flags, this.params, (AddEven) this.subcommand);
 	}
-	
+
 	/**
-	 * Método para execução do comando de adição de números ímpares.
+	 * Método para execução do comando de adição de números pares.
 	 * @throws InvalidArgumentException         Se o argumento passado for inválido.
 	 * @throws MissingRequiredArgumentException Se um argumento obrigatório não for passado.
 	 * @throws MissingRequiredParamException    Se um parâmetro obrigatório não for passado.
@@ -48,22 +48,16 @@ public class AddEven extends Add {
 	 * @see    ExceededParamCountException
 	 */
 	@Override
-	public void execute()
-			throws InvalidArgumentException,
-			MissingRequiredArgumentException,
-			MissingRequiredParamException,
-			ExceededParamCountException  {
-		// Se existir algum subcomando
-		
+	public void execute() throws InvalidArgumentException, MissingRequiredArgumentException, MissingRequiredParamException, ExceededParamCountException {
 		if (this.subcommand != null) {
-			this.subcommand.execute(); // Delega a operação para o subcomando
+			this.subcommand.execute();
 		} else {
 			// Se existir alguma flag
 			
 			if (this.flags != null) {
 				// Verifica se existe alguma flag de ajuda
 				
-				if (this.flags[0].equals("-h") || this.flags[0].equals("--help") ) {
+				if (this.flags[0].equals("-h") || this.flags[0].equals("--help")) {
 					this.help(); // Exibe menu de ajuda
 					
 					return;
@@ -72,7 +66,7 @@ public class AddEven extends Add {
 				throw new InvalidArgumentException(this.flags[0]); // Lança exceção de argumento inválido
 			}
 			
-			// Se não existir parâmetros
+			// Se não existir paramêtros
 			
 			if (this.params == null || this.params.length == 0)
 				throw new MissingRequiredParamException("<...numbers>"); // Lança exceção de parâmetro obrigatório
@@ -81,11 +75,11 @@ public class AddEven extends Add {
 			
 			double sum = this.sum(numbers);
 			System.out.println(sum);
-		}	
+		}
 	}
 	
 	/**
-	 * Método para realizar a soma de números ímpares de um vetor de números
+	 * Método para realizar a soma de números pares de um vetor de números
 	 * @param numbers - O vetor de números
 	 * @return double - Soma dos números
 	 */
@@ -96,7 +90,7 @@ public class AddEven extends Add {
 		for (int i = 0; i < numbers.length; i++) {
 			double number = numbers[i];
 			
-			if (!NumberUtils.isOdd(number)) {
+			if (NumberUtils.isOdd(number)) {
 				sum += number; // Realiza soma
 			}
 		}
@@ -109,7 +103,7 @@ public class AddEven extends Add {
 	 */
 	@Override
 	public void help() {
-		System.out.println("Usage:\nadd even [<...numbers>]");
+		System.out.println("Usage:\nadd odd [<...numbers>]");
 		
 		System.out.println("\nArguments:");
 		System.out.println("  numbers      List of numbers to add");
