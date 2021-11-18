@@ -12,7 +12,7 @@ public abstract class NumberUtils {
 	 * @return boolean - Resultado 
 	 */
 	public static boolean isOdd(double number) {
-		return number % 2 == 0;
+		return number % 2 == 1;
 	}
 	
 	/**

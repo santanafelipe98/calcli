@@ -96,7 +96,7 @@ public class AddOdd extends Add {
 		for (int i = 0; i < numbers.length; i++) {
 			double number = numbers[i];
 			
-			if (!NumberUtils.isOdd(number)) {
+			if (NumberUtils.isOdd(number)) {
 				sum += number; // Realiza soma
 			}
 		}
@@ -109,7 +109,7 @@ public class AddOdd extends Add {
 	 */
 	@Override
 	public void help() {
-		System.out.println("Usage:\nadd even [<...numbers>]");
+		System.out.println("Usage:\nadd odd [<...numbers>]");
 		
 		System.out.println("\nArguments:");
 		System.out.println("  numbers      List of numbers to add");
